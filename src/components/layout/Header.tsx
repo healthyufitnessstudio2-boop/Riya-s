@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = () => {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 select-none w-full max-w-full overflow-x-hidden">
+    <header className="fixed top-0 left-0 right-0 z-50 select-none w-full max-w-full overflow-visible">
       {/* Animated Top Announcement Bar (Right to Left Marquee) */}
       <div className="w-full max-w-full bg-slate-950/95 text-slate-200 text-[11px] sm:text-xs py-1 border-b border-white/10 overflow-hidden relative select-none block">
         <div className="animate-marquee-rtl flex items-center">
@@ -118,31 +118,49 @@ export const Header: React.FC<HeaderProps> = () => {
               Home
             </Link>
 
-            {/* Treatments Dropdown Trigger */}
+            {/* Treatments Nav Item with Dropdown */}
             <div 
-              className="relative"
+              className="relative py-2 group"
               onMouseEnter={() => setIsMegaMenuOpen(true)}
               onMouseLeave={() => setIsMegaMenuOpen(false)}
             >
-              <button 
-                type="button"
-                className="text-xs xl:text-sm font-semibold flex items-center gap-1 transition-colors py-2 text-slate-200 hover:text-white"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsMegaMenuOpen(prev => !prev);
-                }}
-              >
-                <span>Treatments</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-sky-400' : ''}`} />
-              </button>
+              <div className="flex items-center gap-1">
+                {/* Clicking 'Treatments' directly opens /treatments */}
+                <Link
+                  to="/treatments"
+                  onClick={() => setIsMegaMenuOpen(false)}
+                  className={`text-xs xl:text-sm font-semibold transition-colors ${
+                    location.pathname === '/treatments' 
+                      ? 'text-[#0866E9]' 
+                      : 'text-slate-200 hover:text-white'
+                  }`}
+                >
+                  Treatments
+                </Link>
+
+                {/* Chevron icon toggles dropdown */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsMegaMenuOpen(prev => !prev);
+                  }}
+                  className="p-1 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                  aria-label="Toggle Treatments submenu"
+                >
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-sky-400' : ''}`} />
+                </button>
+              </div>
 
               {/* Mega Dropdown with seamless hover bridge */}
               {isMegaMenuOpen && (
                 <div 
-                  className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[520px] z-50"
+                  className="absolute top-full left-0 pt-2 w-[520px] max-w-[85vw] z-50 pointer-events-auto"
                   onMouseEnter={() => setIsMegaMenuOpen(true)}
+                  onMouseLeave={() => setIsMegaMenuOpen(false)}
                 >
-                  <div className="bg-slate-900/98 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-4 grid grid-cols-2 gap-2 text-left animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="bg-slate-900/98 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-4 grid grid-cols-2 gap-2 text-left animate-in fade-in slide-in-from-top-2 duration-150">
                     {TREATMENTS.map((dept) => (
                       <button
                         key={dept.id}
@@ -151,13 +169,13 @@ export const Header: React.FC<HeaderProps> = () => {
                           setIsMegaMenuOpen(false);
                           openTreatmentDetail(dept);
                         }}
-                        className="p-2.5 rounded-xl hover:bg-white/10 transition-colors flex items-start gap-3 text-left group"
+                        className="p-2.5 rounded-xl hover:bg-white/10 transition-colors flex items-start gap-3 text-left group/item cursor-pointer"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-hospital-500/20 text-hospital-300 flex items-center justify-center shrink-0 group-hover:bg-hospital-500 group-hover:text-white transition-colors">
+                        <div className="w-8 h-8 rounded-lg bg-hospital-500/20 text-hospital-300 flex items-center justify-center shrink-0 group-hover/item:bg-hospital-500 group-hover/item:text-white transition-colors">
                           <Activity className="w-4 h-4" />
                         </div>
                         <div>
-                          <span className="text-xs font-bold text-white group-hover:text-sky-300 block">
+                          <span className="text-xs font-bold text-white group-hover/item:text-sky-300 block">
                             {dept.name}
                           </span>
                           <span className="text-[10px] text-slate-400 line-clamp-1">

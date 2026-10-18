@@ -65,7 +65,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Hero Content: Positioned toward the LOWER portion of the full screen */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center pb-8 sm:pb-12 pt-32 sm:pt-36">
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center pb-8 sm:pb-12 pt-36 sm:pt-36">
         {/* Eyebrow Pill */}
         <motion.div
           key={`eyebrow-${slide.id}`}

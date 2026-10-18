@@ -63,7 +63,7 @@ export const AboutPage: React.FC = () => {
       {/* =========================================================================
           HERO BANNER (CityCare Style)
           ========================================================================= */}
-      <section className="bg-hospital-navy text-white pt-28 sm:pt-28 pb-20 relative overflow-hidden">
+      <section className="bg-hospital-navy text-white pt-36 sm:pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-radial opacity-10 pointer-events-none" />
         <div className="w-full px-4 sm:px-6 lg:px-10 space-y-4 relative z-10 text-center sm:text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-300 text-xs font-semibold uppercase tracking-wider">

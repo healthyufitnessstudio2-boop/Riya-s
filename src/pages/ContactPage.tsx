@@ -104,7 +104,7 @@ Please confirm my appointment slot. Thank you!`;
         {/* =========================================================================
             1. HERO SECTION (Exact Reference: Desktop Wide / Mobile Compact)
             ========================================================================= */}
-        <section className="relative w-full overflow-hidden bg-[#071B35] text-white pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 lg:pb-24">
+        <section className="relative w-full overflow-hidden bg-[#071B35] text-white pt-36 sm:pt-32 md:pt-32 pb-12 sm:pb-20 lg:pb-24">
           {/* Responsive Picture Element */}
           <picture className="absolute inset-0 w-full h-full pointer-events-none select-none">
             <source 
