@@ -21,10 +21,15 @@ export const Header: React.FC<HeaderProps> = () => {
   const location = useLocation();
 
   useEffect(() => {
+    let lastScrolled = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrolled = window.scrollY > 20;
+      if (scrolled !== lastScrolled) {
+        lastScrolled = scrolled;
+        setIsScrolled(scrolled);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -120,47 +125,57 @@ export const Header: React.FC<HeaderProps> = () => {
               onMouseLeave={() => setIsMegaMenuOpen(false)}
             >
               <button 
-              className="text-xs xl:text-sm font-semibold flex items-center gap-1 transition-colors py-1 text-slate-200 hover:text-white"
-              onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
-            >
-              <span>Treatments</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-sky-400' : ''}`} />
-            </button>
+                type="button"
+                className="text-xs xl:text-sm font-semibold flex items-center gap-1 transition-colors py-2 text-slate-200 hover:text-white"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMegaMenuOpen(prev => !prev);
+                }}
+              >
+                <span>Treatments</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-sky-400' : ''}`} />
+              </button>
 
-            {/* Mega Dropdown */}
-            {isMegaMenuOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] bg-slate-900/98 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-4 grid grid-cols-2 gap-2 text-left z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                {TREATMENTS.map((dept) => (
-                  <button
-                    key={dept.id}
-                    onClick={() => {
-                      setIsMegaMenuOpen(false);
-                      openTreatmentDetail(dept);
-                    }}
-                    className="p-2.5 rounded-xl hover:bg-white/10 transition-colors flex items-start gap-3 text-left group"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-hospital-500/20 text-hospital-300 flex items-center justify-center shrink-0 group-hover:bg-hospital-500 group-hover:text-white transition-colors">
-                      <Activity className="w-4 h-4" />
+              {/* Mega Dropdown with seamless hover bridge */}
+              {isMegaMenuOpen && (
+                <div 
+                  className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[520px] z-50"
+                  onMouseEnter={() => setIsMegaMenuOpen(true)}
+                >
+                  <div className="bg-slate-900/98 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-4 grid grid-cols-2 gap-2 text-left animate-in fade-in slide-in-from-top-2 duration-150">
+                    {TREATMENTS.map((dept) => (
+                      <button
+                        key={dept.id}
+                        type="button"
+                        onClick={() => {
+                          setIsMegaMenuOpen(false);
+                          openTreatmentDetail(dept);
+                        }}
+                        className="p-2.5 rounded-xl hover:bg-white/10 transition-colors flex items-start gap-3 text-left group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-hospital-500/20 text-hospital-300 flex items-center justify-center shrink-0 group-hover:bg-hospital-500 group-hover:text-white transition-colors">
+                          <Activity className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-white group-hover:text-sky-300 block">
+                            {dept.name}
+                          </span>
+                          <span className="text-[10px] text-slate-400 line-clamp-1">
+                            {dept.shortDesc}
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                    <div className="col-span-2 pt-2 border-t border-white/10 flex justify-between items-center text-[11px]">
+                      <span className="text-slate-400">Personalized 1-on-1 Sessions</span>
+                      <Link to="/treatments" onClick={() => setIsMegaMenuOpen(false)} className="text-sky-400 hover:underline font-bold">
+                        View All Treatments →
+                      </Link>
                     </div>
-                    <div>
-                      <span className="text-xs font-bold text-white group-hover:text-sky-300 block">
-                        {dept.name}
-                      </span>
-                      <span className="text-[10px] text-slate-400 line-clamp-1">
-                        {dept.shortDesc}
-                      </span>
-                    </div>
-                  </button>
-                ))}
-                <div className="col-span-2 pt-2 border-t border-white/10 flex justify-between items-center text-[11px]">
-                  <span className="text-slate-400">Personalized 1-on-1 Sessions</span>
-                  <Link to="/treatments" onClick={() => setIsMegaMenuOpen(false)} className="text-sky-400 hover:underline font-bold">
-                    View All Treatments →
-                  </Link>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
           <Link 
             to="/about" 
@@ -256,7 +271,7 @@ export const Header: React.FC<HeaderProps> = () => {
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-slate-950 border-b border-white/10 px-4 pt-3 pb-6 space-y-3 animate-in fade-in duration-200">
-            <div className="flex flex-col space-y-2 text-left">
+            <div className="flex flex-col space-y-1 text-left">
               <Link
                 to="/"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -276,10 +291,31 @@ export const Header: React.FC<HeaderProps> = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:bg-white/10"
               >
-                About Specialist &amp; Centre
+                Specialist &amp; About Centre
               </Link>
+              <a
+                href="/#facilities"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:bg-white/10"
+              >
+                Facilities &amp; Tech
+              </a>
+              <a
+                href="/#packages"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:bg-white/10"
+              >
+                Rehab Packages
+              </a>
+              <a
+                href="/#why-us"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:bg-white/10"
+              >
+                Why Choose Us
+              </a>
               <Link
-                to="/gallery"
+                to="/stories"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:bg-white/10"
               >

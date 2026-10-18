@@ -159,6 +159,9 @@ h1, h2, h3, h4, h5, h6 {
     #ffffff 360deg
   );
   animation: spin-beam 4.5s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* 3D Carousel Perspective */

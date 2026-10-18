@@ -92,11 +92,13 @@ Please confirm availability. Thank you!`;
           <picture className="absolute inset-0 w-full h-full pointer-events-none select-none">
             <source 
               media="(max-width: 767px)" 
-              srcSet="/images/Contact%20Mobile%20Modern%20Physiotherapy%20Clinic%20Interior.png" 
+              srcSet="/images/Contact%20Mobile%20Modern%20Physiotherapy%20Clinic%20Interior.jpg" 
             />
             <img 
-              src="/images/Contact%20Desktop%20Modern%20Physiotherapy%20Clinic%20Interior.png" 
+              src="/images/Contact%20Desktop%20Modern%20Physiotherapy%20Clinic%20Interior.jpg" 
               alt="Siya’s Physiotherapy Clinic Modern Interior"
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover object-right md:object-center"
             />
           </picture>

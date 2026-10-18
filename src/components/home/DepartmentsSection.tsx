@@ -18,11 +18,27 @@ export const DepartmentsSection: React.FC = () => {
   // Duplicated list for seamless infinite loop
   const duplicatedDepts = [...TREATMENTS, ...TREATMENTS];
 
-  // Continuous auto-scroll loop via requestAnimationFrame
+  // Continuous auto-scroll loop via requestAnimationFrame (Only when visible in viewport)
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     let animationFrameId: number;
     const container = scrollRef.current;
-    if (!container) return;
+    if (!container || !isVisible) return;
 
     const autoScroll = () => {
       if (!isPaused && !isDragging && container) {
@@ -37,7 +53,7 @@ export const DepartmentsSection: React.FC = () => {
 
     animationFrameId = requestAnimationFrame(autoScroll);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused, isDragging]);
+  }, [isPaused, isDragging, isVisible]);
 
   // Mouse Drag Handlers (Desktop manual drag)
   const handleMouseDown = (e: React.MouseEvent) => {

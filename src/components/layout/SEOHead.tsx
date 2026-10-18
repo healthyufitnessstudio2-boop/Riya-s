@@ -12,19 +12,19 @@ const pageSEOMap: Record<string, { title: string; description: string }> = {
     description: "Expert Physiotherapy & Rehabilitation for a pain-free life. Specializing in Back Pain, Neck Pain, and Knee Joint Rehabilitation.",
   },
   '/about': {
-    title: "About Specialist & Centre | Siya’s Physiotherapy & Rehabilitation",
+    title: "Siya’s Physiotherapy & Rehabilitation Centre | Specialist & Clinic Overview",
     description: "Learn about our patient-first recovery philosophy, clinical qualifications, experience, and modern physiotherapy care.",
   },
   '/treatments': {
-    title: "Treatments & Services | Back, Neck & Knee Pain Physiotherapy | Siya's",
+    title: "Siya’s Physiotherapy & Rehabilitation Centre | Treatments & Clinical Services",
     description: "Targeted physiotherapy treatments for back pain, neck strain, knee joint mobility, and sports injuries.",
   },
   '/stories': {
-    title: "Patient Stories & Clinic Gallery | Siya’s Physiotherapy & Rehabilitation",
+    title: "Siya’s Physiotherapy & Rehabilitation Centre | Recovery Stories & Clinic Gallery",
     description: "Authentic recovery feedback, clinic facility photographs, and patient rehabilitation experiences.",
   },
   '/contact': {
-    title: "Contact & Appointments | Book Consultation | Siya’s Physiotherapy",
+    title: "Siya’s Physiotherapy & Rehabilitation Centre | Contact & Appointments",
     description: "Book an appointment, reach out on WhatsApp, call our clinic directly, or find our location on Google Maps.",
   },
 };

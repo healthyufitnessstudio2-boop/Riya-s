@@ -15,8 +15,8 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <SEOHead 
-        title="Dr. Alistair Wright | Siya’s Physiotherapy & Rehabilitation Centre"
-        description="Premier physical therapy and spine rehabilitation centre led by Dr. Alistair Wright (MPT). 1-on-1 personalized sessions, non-surgical spine decompression, laser therapy, and sports conditioning."
+        title="Siya’s Physiotherapy & Rehabilitation Centre | Move Better, Feel Stronger"
+        description="Premier physical therapy and spine rehabilitation centre. 1-on-1 personalized sessions, non-surgical spine decompression, laser therapy, and sports conditioning."
       />
 
       <main className="min-h-screen">
