@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Treatment } from '../../types';
 import { buildWhatsAppEnquiryUrl } from '../../config/clinicConfig';
-import { ArrowRight, CheckCircle2, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { WhatsAppIconSVG } from './WhatsAppButton';
 import { Button } from './Button';
 
 interface TreatmentCardProps {
@@ -68,7 +69,7 @@ export const TreatmentCard: React.FC<TreatmentCardProps> = ({ treatment, isDetai
             target="_blank"
             variant="whatsapp"
             size="sm"
-            icon={<MessageCircle className="w-4 h-4" />}
+            icon={<WhatsAppIconSVG className="w-4 h-4 fill-white" />}
             className="w-full sm:flex-1 justify-center"
           >
             Enquire

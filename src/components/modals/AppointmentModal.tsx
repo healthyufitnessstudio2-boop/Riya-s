@@ -7,12 +7,12 @@ import {
   Phone, 
   FileText, 
   CheckCircle2, 
-  MessageCircle, 
   ShieldCheck, 
   Sparkles,
   MapPin
 } from 'lucide-react';
 import { CLINIC_INFO, LEAD_DOCTOR, TREATMENTS, buildWhatsAppLink } from '../../data/physioData';
+import { WhatsAppIconSVG } from '../common/WhatsAppButton';
 
 interface AppointmentModalProps {
   isOpen: boolean;
@@ -155,19 +155,19 @@ Please confirm my appointment slot. Thank you!`;
               </div>
 
               {/* Direct Actions */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 pt-1">
+              <div className="grid grid-cols-2 gap-2 pt-1 max-w-sm mx-auto">
                 <button
                   type="button"
                   onClick={handleWhatsAppBooking}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-whatsapp text-white text-xs sm:text-sm font-semibold hover:bg-whatsapp-hover transition-colors shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20ba5a] transition-colors shadow-sm truncate"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Instant Confirm via WhatsApp</span>
+                  <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
+                  <span className="truncate">WhatsApp</span>
                 </button>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs sm:text-sm font-semibold hover:bg-slate-200 transition-colors"
+                  className="w-full py-2 px-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition-colors"
                 >
                   Done
                 </button>
@@ -175,25 +175,25 @@ Please confirm my appointment slot. Thank you!`;
             </div>
           ) : (
             /* Booking Form View */
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-2.5">
               {/* Trust Badge - Compact */}
-              <div className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-sky-50/80 border border-sky-100 text-[11px]">
+              <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-sky-50/80 border border-sky-100 text-[10px]">
                 <div className="flex items-center gap-1.5 text-slate-700">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
-                  <span><strong>100% Confidential</strong> • 1-on-1 session with {LEAD_DOCTOR.name}</span>
+                  <ShieldCheck className="w-3 h-3 text-primary shrink-0" />
+                  <span><strong>100% Confidential</strong> • 1-on-1 with {LEAD_DOCTOR.name}</span>
                 </div>
-                <span className="text-primary font-semibold text-[10px] hidden sm:inline">No Prepayment Required</span>
+                <span className="text-primary font-semibold text-[9px] hidden sm:inline">Pay at Clinic</span>
               </div>
 
               {/* Select Service / Treatment (Shortened names) */}
               <div>
-                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
                   Select Treatment / Concern <span className="text-rose-500">*</span>
                 </label>
                 <select
                   value={treatmentId}
                   onChange={(e) => setTreatmentId(e.target.value)}
-                  className="w-full px-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all"
                   required
                 >
                   <option value="general">Initial Physiotherapy Assessment</option>
@@ -211,28 +211,28 @@ Please confirm my appointment slot. Thank you!`;
               </div>
 
               {/* Date & Time Slot Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                  <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
                     Preferred Date <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="date"
                     value={preferredDate}
                     onChange={(e) => setPreferredDate(e.target.value)}
-                    className="w-full px-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                    Preferred Time Slot <span className="text-rose-500">*</span>
+                  <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
+                    Time Slot <span className="text-rose-500">*</span>
                   </label>
                   <select
                     value={preferredTime}
                     onChange={(e) => setPreferredTime(e.target.value)}
-                    className="w-full px-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all"
                     required
                   >
                     <option value="morning">Morning (09:00 AM – 01:00 PM)</option>
@@ -243,51 +243,51 @@ Please confirm my appointment slot. Thank you!`;
               </div>
 
               {/* Patient Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
-                <div className="sm:col-span-8">
-                  <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                    Patient Full Name <span className="text-rose-500">*</span>
+              <div className="grid grid-cols-12 gap-2">
+                <div className="col-span-8">
+                  <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
+                    Patient Name <span className="text-rose-500">*</span>
                   </label>
                   <div className="relative">
-                    <User className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
+                    <User className="w-3 h-3 text-slate-400 absolute left-2.5 top-2" />
                     <input
                       type="text"
                       placeholder="e.g. Rahul Sharma"
                       value={patientName}
                       onChange={(e) => setPatientName(e.target.value)}
-                      className="w-full pl-9 pr-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="w-full pl-7 pr-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="sm:col-span-4">
-                  <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                <div className="col-span-4">
+                  <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
                     Age / Gender
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. 42 / M"
+                    placeholder="42 / M"
                     value={patientAge}
                     onChange={(e) => setPatientAge(e.target.value)}
-                    className="w-full px-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full px-2 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all"
                   />
                 </div>
               </div>
 
               {/* Mobile Phone Number */}
               <div>
-                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
                   Mobile / WhatsApp Number <span className="text-rose-500">*</span>
                 </label>
                 <div className="relative">
-                  <Phone className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
+                  <Phone className="w-3 h-3 text-slate-400 absolute left-2.5 top-2" />
                   <input
                     type="tel"
                     placeholder="e.g. +91 98765 43210"
                     value={patientPhone}
                     onChange={(e) => setPatientPhone(e.target.value)}
-                    className="w-full pl-9 pr-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full pl-7 pr-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all"
                     required
                   />
                 </div>
@@ -295,44 +295,43 @@ Please confirm my appointment slot. Thank you!`;
 
               {/* Brief Symptoms or Pain Notes */}
               <div>
-                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                  Describe Your Pain / Condition (Optional)
+                <label className="block text-[10.5px] font-bold text-slate-700 mb-0.5">
+                  Describe Pain / Condition (Optional)
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="e.g. Lower back pain since 2 weeks, radiating down right leg..."
+                  placeholder="e.g. Lower back pain since 2 weeks..."
                   value={symptoms}
                   onChange={(e) => setSymptoms(e.target.value)}
-                  className="w-full px-3 py-1.5 sm:py-2 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                  className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-xs focus:outline-none focus:ring-1.5 focus:ring-primary focus:border-transparent transition-all resize-none"
                 />
               </div>
 
               {/* Single Branch Notice */}
-              <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-start gap-2 text-[11px] text-slate-600">
-                <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                <div className="leading-snug">
-                  <strong className="text-slate-800">{CLINIC_INFO.branch.name}</strong>
-                  <p className="text-slate-500">{CLINIC_INFO.branch.fullAddress}</p>
+              <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-start gap-1.5 text-[10px] text-slate-600">
+                <MapPin className="w-3 h-3 text-primary shrink-0 mt-0.5" />
+                <div className="leading-tight">
+                  <strong className="text-slate-800">{CLINIC_INFO.branch.name}</strong> • <span className="text-slate-500">{CLINIC_INFO.branch.fullAddress}</span>
                 </div>
               </div>
 
-              {/* Submit Buttons - Compact & Sleek */}
-              <div className="flex flex-col sm:flex-row gap-2 pt-1">
+              {/* Submit Buttons: Exactly 2 Buttons on 1 Line with Official WhatsApp Icon */}
+              <div className="grid grid-cols-2 gap-2 pt-1">
                 <button
                   type="submit"
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20 truncate"
                 >
-                  <Calendar className="w-4 h-4" />
-                  <span>Request Appointment</span>
+                  <Calendar className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Book Slot</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={handleWhatsAppBooking}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-whatsapp text-white text-xs sm:text-sm font-semibold hover:bg-whatsapp-hover transition-colors shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20ba5a] transition-colors shadow-sm truncate"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Book via WhatsApp</span>
+                  <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
+                  <span className="truncate">WhatsApp</span>
                 </button>
               </div>
             </form>

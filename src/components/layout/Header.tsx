@@ -65,9 +65,9 @@ export const Header: React.FC<HeaderProps> = () => {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 select-none w-full">
+    <header className="fixed top-0 left-0 right-0 z-40 select-none w-full max-w-full overflow-x-hidden">
       {/* Animated Top Announcement Bar (Right to Left Marquee) */}
-      <div className="w-full bg-slate-950/95 text-slate-200 text-[11px] sm:text-xs py-1 border-b border-white/10 overflow-hidden relative select-none block">
+      <div className="w-full max-w-full bg-slate-950/95 text-slate-200 text-[11px] sm:text-xs py-1 border-b border-white/10 overflow-hidden relative select-none block">
         <div className="animate-marquee-rtl flex items-center">
           {marqueeItem}
           {marqueeItem}
@@ -85,17 +85,17 @@ export const Header: React.FC<HeaderProps> = () => {
         }`}
       >
         <div className="w-full px-3 sm:px-6 lg:px-10 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-hospital-600 via-hospital-500 to-sky-400 flex items-center justify-center text-white shadow-md shadow-hospital-600/30 group-hover:scale-105 transition-transform">
-              <Activity className="w-5 h-5 text-white animate-pulse" />
+          {/* Logo - Perfectly sized for Mobile & Desktop */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-hospital-600 via-hospital-500 to-sky-400 flex items-center justify-center text-white shadow-md shadow-hospital-600/30 group-hover:scale-105 transition-transform shrink-0">
+              <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-pulse" />
             </div>
-            <div className="text-left">
-              <span className="text-base sm:text-lg font-black tracking-tight block leading-none text-white">
-                Siya's <span className="text-[#0866E9] font-medium text-xs sm:text-sm">PHYSIOTHERAPY</span>
+            <div className="text-left min-w-0">
+              <span className="text-sm sm:text-lg font-black tracking-tight block leading-tight text-white truncate">
+                Siya's <span className="text-[#0866E9] font-bold text-xs sm:text-sm">PHYSIO</span>
               </span>
-              <span className="text-[10px] tracking-wider font-semibold uppercase block mt-0.5 text-slate-400">
-                Rehabilitation Centre
+              <span className="text-[9px] sm:text-[10px] tracking-wider font-semibold uppercase block text-slate-400 truncate leading-none mt-0.5">
+                Rehab Centre
               </span>
             </div>
           </Link>
@@ -241,15 +241,15 @@ export const Header: React.FC<HeaderProps> = () => {
             </button>
           </div>
 
-          {/* Mobile Actions */}
-          <div className="flex items-center gap-2 lg:hidden">
+          {/* Mobile Actions - Compact & guaranteed to never overflow */}
+          <div className="flex items-center gap-1.5 lg:hidden shrink-0">
             {/* Call Action: Icon Only */}
             <a
               href={`tel:${CLINIC_INFO.phone}`}
-              className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all flex items-center justify-center shrink-0"
+              className="w-8 h-8 rounded-lg bg-white/10 text-white hover:bg-white/20 active:bg-white/30 transition-all flex items-center justify-center shrink-0"
               aria-label="Call Clinic"
             >
-              <Phone className="w-4 h-4 text-sky-400" />
+              <Phone className="w-3.5 h-3.5 text-sky-400" />
             </a>
 
             {/* WhatsApp Action: Official SVG Icon Only */}
@@ -257,28 +257,28 @@ export const Header: React.FC<HeaderProps> = () => {
               href={buildWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl bg-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/30 border border-[#25D366]/40 transition-all flex items-center justify-center shrink-0"
+              className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/30 border border-[#25D366]/40 transition-all flex items-center justify-center shrink-0"
               aria-label="WhatsApp"
             >
-              <WhatsAppIconSVG className="w-4 h-4 fill-current" />
+              <WhatsAppIconSVG className="w-3.5 h-3.5 fill-current" />
             </a>
 
-            {/* Book Action: Labeled 'Appointment' */}
+            {/* Book Action: Compact 'Book' */}
             <button
               onClick={() => openAppointment()}
-              className="py-1.5 px-2.5 sm:px-3 bg-gradient-to-r from-hospital-500 to-hospital-600 active:bg-hospital-700 text-white font-bold text-xs rounded-xl shadow-md flex items-center gap-1 shrink-0"
+              className="h-8 px-2.5 bg-gradient-to-r from-hospital-500 to-hospital-600 active:bg-hospital-700 text-white font-bold text-xs rounded-lg shadow-md flex items-center gap-1 shrink-0 whitespace-nowrap"
             >
               <Calendar className="w-3.5 h-3.5 text-sky-200" />
-              <span>Appointment</span>
+              <span>Book</span>
             </button>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/15 transition-colors shrink-0"
+              className="w-8 h-8 rounded-lg bg-white/10 text-white hover:bg-white/15 transition-colors flex items-center justify-center shrink-0"
               aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>

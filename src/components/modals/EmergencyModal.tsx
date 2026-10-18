@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { 
   X, 
   PhoneCall, 
-  MessageCircle, 
   AlertCircle, 
   Clock, 
   MapPin, 
@@ -10,6 +9,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { CLINIC_INFO, buildWhatsAppLink, buildCallLink } from '../../data/physioData';
+import { WhatsAppIconSVG } from '../common/WhatsAppButton';
 
 interface EmergencyModalProps {
   isOpen: boolean;
@@ -84,24 +84,26 @@ I have acute severe pain (back spasm / joint sprain / mobility lock). Please con
               <Clock className="w-3 h-3 text-emerald-400" />
               <span>Priority Response • Mon - Sat (8:30 AM – 8:30 PM)</span>
             </div>
+          </div>
             
+          {/* Dual Action Buttons on 1 Line */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
             <a
               href={buildCallLink()}
-              className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-primary text-white font-bold hover:bg-primary-hover transition-colors shadow-md shadow-sky-500/25 text-xs sm:text-sm mt-1"
+              className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-hover transition-colors shadow-md shadow-sky-500/25 text-xs truncate"
             >
-              <PhoneCall className="w-4 h-4" />
-              <span>Call Reception ({CLINIC_INFO.phoneDisplay})</span>
+              <PhoneCall className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">Call Clinic</span>
             </a>
-          </div>
 
-          {/* WhatsApp Secondary Action */}
-          <button
-            onClick={handleWhatsAppUrgent}
-            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-whatsapp text-white font-semibold hover:bg-whatsapp-hover transition-colors text-xs sm:text-sm shadow-sm"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>Send Urgent WhatsApp Message</span>
-          </button>
+            <button
+              onClick={handleWhatsAppUrgent}
+              className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#25D366] text-white font-bold hover:bg-[#20ba5a] transition-colors text-xs shadow-sm truncate"
+            >
+              <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
+              <span className="truncate">WhatsApp</span>
+            </button>
+          </div>
 
           {/* Single Branch Location Info */}
           <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-start gap-2 text-[11px] text-slate-600">

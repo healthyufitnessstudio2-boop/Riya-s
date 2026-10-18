@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { 
   X, 
   Calendar, 
-  MessageCircle, 
   CheckCircle2, 
   Activity, 
   Clock, 
@@ -12,6 +11,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { TreatmentDepartment, LEAD_DOCTOR, buildWhatsAppLink } from '../../data/physioData';
+import { WhatsAppIconSVG } from '../common/WhatsAppButton';
 
 interface TreatmentDetailModalProps {
   isOpen: boolean;
@@ -159,28 +159,28 @@ export const TreatmentDetailModal: React.FC<TreatmentDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Modal Footer Actions - Compact */}
-        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2.5">
-          <div className="text-[11px] text-slate-500 text-center sm:text-left">
-            <span>Consultation Fee: Initial assessment + 1st treatment included</span>
+        {/* Modal Footer Actions - Compact 2 Buttons on 1 Line */}
+        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="text-[10px] text-slate-500 text-center sm:text-left">
+            <span>Assessment + 1st treatment included</span>
           </div>
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="grid grid-cols-2 gap-2 w-full sm:w-auto">
             <button
               onClick={handleWhatsAppInquiry}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-whatsapp text-white text-xs sm:text-sm font-semibold hover:bg-whatsapp-hover transition-colors shadow-sm"
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20ba5a] transition-colors shadow-sm truncate"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span>WhatsApp</span>
+              <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
+              <span className="truncate">WhatsApp</span>
             </button>
             <button
               onClick={() => {
                 onClose();
                 onBookTreatment(treatment.id);
               }}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20"
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20 truncate"
             >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Treatment</span>
+              <Calendar className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">Book Slot</span>
             </button>
           </div>
         </div>

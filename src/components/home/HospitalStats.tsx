@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Activity, ShieldCheck, Award, Clock } from 'lucide-react';
 import { CLINIC_STATS } from '../../data/physioData';
+import { AnimatedCounter } from '../common/AnimatedCounter';
 
 const icons = [Activity, ShieldCheck, Award, Clock];
 
@@ -29,7 +30,7 @@ export const HospitalStats: React.FC = () => {
                 </div>
                 <div className="text-left min-w-0 flex-1 space-y-0.5">
                   <div className="text-base sm:text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight leading-none">
-                    {stat.value}
+                    <AnimatedCounter value={stat.value} />
                   </div>
                   <div className="text-[10.5px] sm:text-xs font-bold text-hospital-700 leading-tight truncate">
                     {stat.label}

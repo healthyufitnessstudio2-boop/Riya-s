@@ -8,6 +8,7 @@ import {
   buildWhatsAppLink 
 } from '../data/physioData';
 import { useModals } from '../context/ModalContext';
+import { WhatsAppIconSVG } from '../components/common/WhatsAppButton';
 import { 
   Award, 
   ShieldCheck, 
@@ -249,8 +250,9 @@ export const StoriesGalleryPage: React.FC = () => {
               href={buildWhatsAppLink("Hello Siya's Physiotherapy & Rehabilitation Centre, I saw your patient recovery stories and would like to start my rehabilitation.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 px-3 rounded-xl bg-whatsapp text-white font-bold text-xs sm:text-sm hover:bg-whatsapp-hover shadow-sm text-center flex items-center justify-center gap-1"
+              className="w-full py-2.5 px-3 rounded-xl bg-[#25D366] text-white font-bold text-xs sm:text-sm hover:bg-[#20ba5a] shadow-sm text-center flex items-center justify-center gap-1.5"
             >
+              <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
               <span>WhatsApp</span>
             </a>
           </div>

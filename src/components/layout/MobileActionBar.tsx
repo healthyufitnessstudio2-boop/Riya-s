@@ -14,8 +14,8 @@ export const MobileActionBar: React.FC = () => {
   // Standard 5-Item Floating Navigation on all pages
   return (
     <nav 
-      aria-label="Floating mobile page navigation"
-      className="lg:hidden fixed bottom-3 left-3 right-3 z-40 bg-slate-950/95 backdrop-blur-xl border border-white/15 rounded-2xl py-1.5 px-2 shadow-2xl shadow-black/60 select-none pb-[calc(0.375rem+env(safe-area-inset-bottom,0px))]"
+      aria-label="Mobile navigation bar"
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/98 backdrop-blur-xl border-t border-white/10 py-1.5 px-3 shadow-2xl select-none pb-[calc(0.4rem+env(safe-area-inset-bottom,0px))]"
     >
       <div className="flex items-center justify-around gap-1">
         {navItems.map((item) => {

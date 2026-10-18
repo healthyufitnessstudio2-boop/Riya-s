@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { 
   X, 
   Calendar, 
-  MessageCircle, 
   CheckCircle2, 
   Sparkles, 
   Clock, 
@@ -10,6 +9,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { RehabPackage, buildWhatsAppLink } from '../../data/physioData';
+import { WhatsAppIconSVG } from '../common/WhatsAppButton';
 
 interface HealthPackageDetailModalProps {
   isOpen: boolean;
@@ -150,26 +150,26 @@ export const HealthPackageDetailModal: React.FC<HealthPackageDetailModalProps> =
           </div>
         </div>
 
-        {/* Footer - Compact */}
-        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2.5">
-          <span className="text-[11px] text-slate-500">Zero cancellation penalties • Reschedule anytime</span>
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+        {/* Footer - Compact 2 Buttons on 1 Line */}
+        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span className="text-[10px] text-slate-500 text-center sm:text-left">Zero cancellation fees • Reschedule anytime</span>
+          <div className="grid grid-cols-2 gap-2 w-full sm:w-auto">
             <button
               onClick={handleWhatsAppBooking}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-whatsapp text-white text-xs sm:text-sm font-semibold hover:bg-whatsapp-hover transition-colors shadow-sm"
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20ba5a] transition-colors shadow-sm truncate"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span>WhatsApp</span>
+              <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
+              <span className="truncate">WhatsApp</span>
             </button>
             <button
               onClick={() => {
                 onClose();
                 onBookPackage(packageData);
               }}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20"
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20 truncate"
             >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Package</span>
+              <Calendar className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">Book Package</span>
             </button>
           </div>
         </div>

@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { LEAD_DOCTOR } from '../../data/physioData';
 import { useModal } from '../../context/ModalContext';
+import { AnimatedCounter } from '../common/AnimatedCounter';
 
 export const DoctorsSection: React.FC = () => {
   const { openDoctorProfile, openAppointment } = useModal();
@@ -186,7 +187,7 @@ export const DoctorsSection: React.FC = () => {
                   </div>
                   <div className="text-left min-w-0 flex-1 space-y-0.5">
                     <div className="text-base sm:text-xl md:text-2xl font-extrabold text-white tracking-tight leading-none">
-                      {stat.value}
+                      <AnimatedCounter value={stat.value} />
                     </div>
                     <div className="text-[10.5px] sm:text-xs font-bold text-sky-300 leading-tight truncate">
                       {stat.title}

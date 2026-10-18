@@ -8,6 +8,7 @@ import {
   buildWhatsAppLink 
 } from '../data/physioData';
 import { useModals } from '../context/ModalContext';
+import { WhatsAppIconSVG } from '../components/common/WhatsAppButton';
 import { 
   Award, 
   ShieldCheck, 
@@ -174,9 +175,9 @@ export const AboutPage: React.FC = () => {
                   href={buildWhatsAppLink("Hello Siya's Physiotherapy & Rehabilitation Centre, I would like to book a consultation appointment.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-3 rounded-xl bg-whatsapp text-white font-bold text-xs sm:text-sm hover:bg-whatsapp-hover shadow-sm flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 px-3 rounded-xl bg-[#25D366] text-white font-bold text-xs sm:text-sm hover:bg-[#20ba5a] shadow-sm flex items-center justify-center gap-1.5"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" />
+                  <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white" />
                   <span>WhatsApp</span>
                 </a>
               </div>
@@ -281,18 +282,18 @@ export const AboutPage: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
             {CLINIC_INFO.branch.fullAddress} • Landmark: {CLINIC_INFO.branch.landmark}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row items-center justify-center pt-2 max-w-md mx-auto w-full">
             <button
               onClick={() => openAppointment()}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-hover shadow-lg shadow-sky-600/30"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-hover shadow-lg shadow-sky-600/30 truncate"
             >
-              Book In-Person Consultation
+              Book Visit
             </button>
             <a
               href={buildCallLink()}
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors border border-white/10"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm transition-colors border border-white/10 truncate text-center"
             >
-              Call: {CLINIC_INFO.phoneDisplay}
+              Call Clinic
             </a>
           </div>
         </div>
