@@ -124,21 +124,20 @@ export const AboutPage: React.FC = () => {
                   }}
                 />
 
-                {/* Top-Right Experience Badge */}
-                <div className="absolute top-3.5 right-3.5 z-20">
+                {/* Top Single-Line Badges Row (Guaranteed No Overlap & Shortened Text) */}
+                <div className="absolute top-3.5 inset-x-3.5 z-20 flex items-center justify-between gap-2 pointer-events-none">
+                  {/* Left: Registration Badge (Shortened) */}
                   <span 
-                    className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold text-white bg-[#0A1428]/85 backdrop-blur-md border border-sky-400/50 shadow-md"
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-emerald-300 bg-emerald-950/85 backdrop-blur-md border border-emerald-500/40 shadow-sm shrink-0 whitespace-nowrap"
                   >
-                    {LEAD_DOCTOR.experience}
+                    Reg: 2014/3910
                   </span>
-                </div>
 
-                {/* Top-Left Registration Badge */}
-                <div className="absolute top-3.5 left-3.5 z-20">
+                  {/* Right: Experience Badge (Shortened) */}
                   <span 
-                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-emerald-300 bg-emerald-950/80 backdrop-blur-md border border-emerald-500/40 shadow-sm"
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold text-white bg-[#0A1428]/85 backdrop-blur-md border border-sky-400/50 shadow-md shrink-0 whitespace-nowrap"
                   >
-                    Reg: {LEAD_DOCTOR.regNumber}
+                    12+ Years Exp
                   </span>
                 </div>
 
