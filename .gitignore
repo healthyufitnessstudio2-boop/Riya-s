@@ -58,3 +58,8 @@ dist-ssr/
 
 # Agent metadata
 .agents/
+
+# Planning & Mockup files
+*_PLAN.md
+*Mockup.png
+*.mockup.*
