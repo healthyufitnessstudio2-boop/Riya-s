@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare } from 'lucide-react';
-import { CLINIC_INFO, TREATMENTS } from '../../data/physioData';
+import { CLINIC_INFO, TREATMENTS, buildWhatsAppLink } from '../../data/physioData';
+import { WhatsAppIconSVG } from '../common/WhatsAppButton';
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,12 +17,22 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
+    if (!formData.name.trim() || !formData.phone.trim()) {
       alert('Please fill in your name and contact phone number.');
       return;
     }
     setIsSubmitted(true);
-    setFormData({ name: '', phone: '', email: '', department: '', subject: '', message: '' });
+
+    const msg = `*NEW PATIENT INQUIRY*
+
+* Name: ${formData.name.trim()}
+* Phone: ${formData.phone.trim()}${formData.email.trim() ? `\n* Email: ${formData.email.trim()}` : ''}${formData.department ? `\n* Department: ${formData.department}` : ''}${formData.subject.trim() ? `\n* Subject: ${formData.subject.trim()}` : ''}${formData.message.trim() ? `\n* Inquiry Message: ${formData.message.trim()}` : ''}
+
+Clinic: ${CLINIC_INFO.name} (${CLINIC_INFO.branch.name})
+Please get back to me. Thank you!`;
+
+    const waUrl = buildWhatsAppLink(msg);
+    window.open(waUrl, '_blank');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -216,10 +227,10 @@ export const ContactSection: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-gradient-to-r from-hospital-500 to-hospital-600 hover:from-hospital-600 hover:to-hospital-700 text-white font-bold rounded-xl text-sm shadow-lg shadow-hospital-600/30 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-gradient-to-r from-hospital-600 via-[#25D366] to-[#20ba5a] hover:from-hospital-700 hover:to-[#1ea751] text-white font-bold rounded-xl text-sm shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Send Direct Inquiry</span>
+                  <WhatsAppIconSVG className="w-4 h-4 fill-white shrink-0" />
+                  <span>Send Inquiry via WhatsApp</span>
                 </button>
               </form>
             )}

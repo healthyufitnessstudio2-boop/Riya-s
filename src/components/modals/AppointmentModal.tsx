@@ -63,23 +63,44 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!patientName.trim() || !patientPhone.trim()) {
+      alert('Please fill in patient name and contact phone number.');
+      return;
+    }
     const ref = 'SYA-' + Math.floor(100000 + Math.random() * 900000);
     setReferenceId(ref);
     setIsSubmitted(true);
+
+    const selectedTreat = TREATMENTS.find(t => t.id === treatmentId)?.name || 'General Physiotherapy Assessment';
+    const msg = `*NEW APPOINTMENT BOOKING REQUEST*
+Ref ID: ${ref}
+
+* Patient Name: ${patientName.trim()}
+* Contact Phone: ${patientPhone.trim()}${patientAge.trim() ? `\n* Age / Gender: ${patientAge.trim()}` : ''}
+* Service / Treatment: ${selectedTreat}
+* Preferred Date: ${preferredDate || 'Earliest available'}
+* Preferred Slot: ${preferredTime.toUpperCase()}${symptoms.trim() ? `\n* Symptoms / Problem: ${symptoms.trim()}` : ''}
+
+Clinic: ${CLINIC_INFO.name} (${CLINIC_INFO.branch.name})
+Please confirm my appointment slot. Thank you!`;
+
+    // Auto-redirect directly to WhatsApp with prefilled lead details
+    const waUrl = buildWhatsAppLink(msg);
+    window.open(waUrl, '_blank');
   };
 
   const handleWhatsAppBooking = () => {
     const selectedTreat = TREATMENTS.find(t => t.id === treatmentId)?.name || 'General Physiotherapy Assessment';
-    const msg = `Hello Siya's Physiotherapy & Rehabilitation Centre,
+    const msg = `*NEW APPOINTMENT BOOKING REQUEST*
+Ref ID: ${referenceId || ('SYA-' + Math.floor(100000 + Math.random() * 900000))}
 
-I would like to book a consultation appointment:
-* Patient Name: ${patientName || 'Patient'}
-* Contact Phone: ${patientPhone || 'Not provided'}
+* Patient Name: ${patientName.trim() || 'Patient'}
+* Contact Phone: ${patientPhone.trim() || 'Not provided'}${patientAge.trim() ? `\n* Age / Gender: ${patientAge.trim()}` : ''}
 * Service / Treatment: ${selectedTreat}
 * Preferred Date: ${preferredDate || 'Earliest available'}
-* Preferred Slot: ${preferredTime.toUpperCase()}
-* Symptoms/Issue: ${symptoms || 'General joint/spine pain'}
+* Preferred Slot: ${preferredTime.toUpperCase()}${symptoms.trim() ? `\n* Symptoms / Problem: ${symptoms.trim()}` : ''}
 
+Clinic: ${CLINIC_INFO.name} (${CLINIC_INFO.branch.name})
 Please confirm my appointment slot. Thank you!`;
 
     window.open(buildWhatsAppLink(msg), '_blank');
@@ -315,23 +336,14 @@ Please confirm my appointment slot. Thank you!`;
                 </div>
               </div>
 
-              {/* Submit Buttons: Exactly 2 Buttons on 1 Line with Official WhatsApp Icon */}
-              <div className="grid grid-cols-2 gap-2 pt-1">
+              {/* Single Primary Action Button: Auto-redirects directly to WhatsApp with prefilled details */}
+              <div className="pt-1">
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover transition-colors shadow-md shadow-sky-600/20 truncate"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-hospital-600 via-[#25D366] to-[#20ba5a] hover:from-hospital-700 hover:to-[#1ea751] text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/25 active:scale-[0.99] transition-all cursor-pointer"
                 >
-                  <Calendar className="w-3.5 h-3.5 shrink-0" />
-                  <span className="truncate">Book Slot</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleWhatsAppBooking}
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20ba5a] transition-colors shadow-sm truncate"
-                >
-                  <WhatsAppIconSVG className="w-3.5 h-3.5 fill-white shrink-0" />
-                  <span className="truncate">WhatsApp</span>
+                  <WhatsAppIconSVG className="w-4 h-4 fill-white shrink-0" />
+                  <span>Confirm &amp; Book via WhatsApp</span>
                 </button>
               </div>
             </form>

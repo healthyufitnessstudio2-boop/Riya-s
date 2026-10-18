@@ -54,21 +54,38 @@ export const ContactPage: React.FC = () => {
     const ref = 'SYA-' + Math.floor(100000 + Math.random() * 900000);
     setReferenceId(ref);
     setIsSubmitted(true);
+
+    const selectedTreat = TREATMENTS.find(t => t.id === formData.treatment)?.name || 'General Consultation';
+    const text = `*NEW APPOINTMENT BOOKING REQUEST*
+Ref ID: ${ref}
+
+* Patient Name: ${formData.name.trim()}
+* Mobile / WhatsApp: ${formData.phone.trim()}${formData.email.trim() ? `\n* Email: ${formData.email.trim()}` : ''}
+* Service / Specialty: ${selectedTreat}
+* Preferred Date: ${formData.preferredDate || 'Earliest available'}
+* Preferred Slot: ${formData.preferredTime}${formData.message.trim() ? `\n* Symptoms / Notes: ${formData.message.trim()}` : ''}
+
+Clinic: ${CLINIC_INFO.name} (${CLINIC_INFO.branch.name})
+Please confirm my appointment slot. Thank you!`;
+
+    // Auto-redirect directly to WhatsApp with prefilled lead details
+    const waUrl = buildWhatsAppLink(text);
+    window.open(waUrl, '_blank');
   };
 
   const handleWhatsAppSend = () => {
     const selectedTreat = TREATMENTS.find(t => t.id === formData.treatment)?.name || 'General Consultation';
-    const text = `Hello Siya's Physiotherapy Centre,
+    const text = `*NEW APPOINTMENT BOOKING REQUEST*
+Ref ID: ${referenceId || ('SYA-' + Math.floor(100000 + Math.random() * 900000))}
 
-I would like to request an appointment:
-* Patient Name: ${formData.name || 'Patient'}
-* Mobile: ${formData.phone || 'Not provided'}
+* Patient Name: ${formData.name.trim() || 'Patient'}
+* Mobile / WhatsApp: ${formData.phone.trim() || 'Not provided'}${formData.email.trim() ? `\n* Email: ${formData.email.trim()}` : ''}
 * Service / Specialty: ${selectedTreat}
 * Preferred Date: ${formData.preferredDate || 'Earliest available'}
-* Preferred Slot: ${formData.preferredTime}
-* Symptoms / Notes: ${formData.message || 'General assessment'}
+* Preferred Slot: ${formData.preferredTime}${formData.message.trim() ? `\n* Symptoms / Notes: ${formData.message.trim()}` : ''}
 
-Please confirm availability. Thank you!`;
+Clinic: ${CLINIC_INFO.name} (${CLINIC_INFO.branch.name})
+Please confirm my appointment slot. Thank you!`;
 
     window.open(buildWhatsAppLink(text), '_blank');
   };
@@ -625,14 +642,14 @@ Please confirm availability. Thank you!`;
                     </div>
                   </div>
 
-                  {/* Primary CTA Button: Request Appointment */}
+                  {/* Primary CTA Button: Book via WhatsApp */}
                   <div className="pt-1.5 sm:pt-2">
                     <button
                       type="submit"
-                      className="w-full py-2.5 sm:py-3.5 px-5 sm:px-6 rounded-xl bg-[#0866E9] hover:bg-[#0756C7] active:bg-[#0647A6] text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-[#0866E9]/25 flex items-center justify-center gap-2 group cursor-pointer"
+                      className="w-full py-2.5 sm:py-3.5 px-5 sm:px-6 rounded-xl bg-gradient-to-r from-[#0866E9] via-[#25D366] to-[#20ba5a] hover:from-[#0756C7] hover:to-[#1ea751] active:scale-[0.99] text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-emerald-500/25 flex items-center justify-center gap-2 group cursor-pointer"
                     >
-                      <Calendar className="w-4 h-4 text-white" />
-                      <span>Request Appointment</span>
+                      <WhatsAppIconSVG className="w-4 h-4 fill-white" />
+                      <span>Book Appointment via WhatsApp</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
