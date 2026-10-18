@@ -22,7 +22,9 @@ import {
   MessageCircle, 
   ChevronRight,
   MapPin,
-  Building2
+  Building2,
+  Stethoscope,
+  User
 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -61,7 +63,7 @@ export const AboutPage: React.FC = () => {
       {/* =========================================================================
           HERO BANNER (CityCare Style)
           ========================================================================= */}
-      <section className="bg-hospital-navy text-white pt-12 pb-20 relative overflow-hidden">
+      <section className="bg-hospital-navy text-white pt-28 sm:pt-28 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-radial opacity-10 pointer-events-none" />
         <div className="w-full px-4 sm:px-6 lg:px-10 space-y-4 relative z-10 text-center sm:text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-300 text-xs font-semibold uppercase tracking-wider">
@@ -86,27 +88,108 @@ export const AboutPage: React.FC = () => {
         <div className="rounded-3xl bg-white border border-slate-200/90 shadow-2xl p-6 sm:p-10 lg:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Doctor Photo */}
+            {/* Consultant Specialist Card - Exact Same Design as Home Page */}
             <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="relative w-64 h-80 sm:w-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-primary/20 shadow-xl">
-                <img 
-                  src={LEAD_DOCTOR.photo} 
-                  alt={LEAD_DOCTOR.name}
-                  className="w-full h-full object-cover object-top"
+              <div
+                style={{
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.5), 0 0 35px rgba(0, 210, 255, 0.35), inset 0 1px 2px rgba(255,255,255,0.25)'
+                }}
+                className="relative w-full max-w-[340px] sm:max-w-[380px] h-[510px] sm:h-[550px] rounded-[28px] overflow-hidden flex flex-col justify-end backdrop-blur-xl bg-[#0E1D38] border border-white/25 text-left select-none group shadow-2xl"
+              >
+                {/* Ambient Lighting */}
+                <div 
+                  className="absolute inset-0 pointer-events-none opacity-45 z-0" 
+                  style={{ 
+                    background: 'radial-gradient(circle at 50% 30%, rgba(0, 210, 255, 0.3) 0%, transparent 70%)' 
+                  }} 
                 />
-                <div className="absolute bottom-3 left-3 right-3 bg-hospital-navy/90 backdrop-blur-md rounded-xl p-3 text-center text-white border border-white/10">
-                  <div className="text-sm font-bold">{LEAD_DOCTOR.name}</div>
-                  <div className="text-xs text-sky-300">{LEAD_DOCTOR.title}</div>
-                </div>
-              </div>
 
-              <div className="pt-4 flex flex-wrap gap-2 justify-center text-xs">
-                <span className="px-3 py-1 rounded-full bg-hospital-50 text-hospital-800 font-bold border border-hospital-200">
-                  {LEAD_DOCTOR.experience}
-                </span>
-                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">
-                  {LEAD_DOCTOR.regNumber}
-                </span>
+                {/* Top Subtle Frosted Glass Reflection Highlight */}
+                <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/15 to-transparent pointer-events-none z-1" />
+
+                {/* Doctor Photo */}
+                <div className="absolute inset-x-0 top-0 bottom-24 flex items-end justify-center z-5 pointer-events-none overflow-hidden">
+                  <img
+                    src={LEAD_DOCTOR.photo}
+                    alt={LEAD_DOCTOR.name}
+                    className="w-full h-full object-cover object-top select-none filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)] group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Bottom Targeted Readability Dark Gradient */}
+                <div 
+                  className="absolute inset-x-0 bottom-0 h-[60%] pointer-events-none z-10"
+                  style={{
+                    background: 'linear-gradient(to bottom, transparent 0%, rgba(5,12,28,0.3) 30%, rgba(5,12,28,0.85) 65%, rgba(5,12,28,0.98) 100%)'
+                  }}
+                />
+
+                {/* Top-Right Experience Badge */}
+                <div className="absolute top-3.5 right-3.5 z-20">
+                  <span 
+                    className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold text-white bg-[#0A1428]/85 backdrop-blur-md border border-sky-400/50 shadow-md"
+                  >
+                    {LEAD_DOCTOR.experience}
+                  </span>
+                </div>
+
+                {/* Top-Left Registration Badge */}
+                <div className="absolute top-3.5 left-3.5 z-20">
+                  <span 
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-emerald-300 bg-emerald-950/80 backdrop-blur-md border border-emerald-500/40 shadow-sm"
+                  >
+                    Reg: {LEAD_DOCTOR.regNumber}
+                  </span>
+                </div>
+
+                {/* Bottom Information Content Panel */}
+                <div className="relative z-20 p-5 sm:p-6 text-left flex flex-col justify-end">
+                  {/* Specialty Pill with Icon */}
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span 
+                      className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md bg-sky-500/30 text-sky-100 border border-sky-400/50"
+                    >
+                      <Stethoscope className="w-3.5 h-3.5 text-sky-300" />
+                      <span>MUSCULOSKELETAL &amp; SPORTS REHAB</span>
+                    </span>
+                  </div>
+
+                  {/* Doctor Name */}
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)] mt-1">
+                    {LEAD_DOCTOR.name}
+                  </h3>
+
+                  {/* Designation */}
+                  <p className="text-xs sm:text-sm text-sky-200 font-semibold mt-1 drop-shadow-sm">
+                    {LEAD_DOCTOR.title}
+                  </p>
+
+                  {/* Qualifications */}
+                  <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 line-clamp-1">
+                    {LEAD_DOCTOR.qualifications}
+                  </p>
+
+                  {/* Actions: Equal-height buttons */}
+                  <div className="mt-4 pt-3 border-t border-white/15 flex items-center gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => openDoctorProfile(LEAD_DOCTOR)}
+                      className="flex-1 py-2 px-3 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs backdrop-blur-md transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm"
+                    >
+                      <User className="w-3.5 h-3.5 text-slate-200" />
+                      <span>Profile</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => openAppointment()}
+                      className="flex-[1.2] py-2 px-3 rounded-xl bg-gradient-to-r from-hospital-500 via-hospital-600 to-blue-600 hover:from-hospital-600 hover:to-blue-700 text-white font-bold text-xs shadow-lg shadow-hospital-600/40 transition-all flex items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap"
+                    >
+                      <Calendar className="w-3.5 h-3.5 text-sky-200" />
+                      <span>Book Slot</span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 

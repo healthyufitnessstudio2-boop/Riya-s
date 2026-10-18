@@ -85,17 +85,17 @@ export const Header: React.FC<HeaderProps> = () => {
         }`}
       >
         <div className="w-full px-3 sm:px-6 lg:px-10 flex items-center justify-between">
-          {/* Logo - Perfectly sized for Mobile & Desktop */}
+          {/* Logo - Full Clinic Name */}
           <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink min-w-0">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-hospital-600 via-hospital-500 to-sky-400 flex items-center justify-center text-white shadow-md shadow-hospital-600/30 group-hover:scale-105 transition-transform shrink-0">
               <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-pulse" />
             </div>
             <div className="text-left min-w-0">
-              <span className="text-sm sm:text-lg font-black tracking-tight block leading-tight text-white truncate">
-                Siya's <span className="text-[#0866E9] font-bold text-xs sm:text-sm">PHYSIO</span>
+              <span className="text-sm sm:text-lg font-black tracking-tight block leading-tight text-white whitespace-nowrap">
+                Siya's <span className="text-[#0866E9] font-bold">PHYSIOTHERAPY</span>
               </span>
-              <span className="text-[9px] sm:text-[10px] tracking-wider font-semibold uppercase block text-slate-400 truncate leading-none mt-0.5">
-                Rehab Centre
+              <span className="text-[9px] sm:text-[10px] tracking-wider font-semibold uppercase block text-slate-300 whitespace-nowrap leading-none mt-0.5">
+                &amp; Rehabilitation Centre
               </span>
             </div>
           </Link>
@@ -241,46 +241,50 @@ export const Header: React.FC<HeaderProps> = () => {
             </button>
           </div>
 
-          {/* Mobile Actions - Compact & guaranteed to never overflow */}
-          <div className="flex items-center gap-1.5 lg:hidden shrink-0">
-            {/* Call Action: Icon Only */}
-            <a
-              href={`tel:${CLINIC_INFO.phone}`}
-              className="w-8 h-8 rounded-lg bg-white/10 text-white hover:bg-white/20 active:bg-white/30 transition-all flex items-center justify-center shrink-0"
-              aria-label="Call Clinic"
-            >
-              <Phone className="w-3.5 h-3.5 text-sky-400" />
-            </a>
-
-            {/* WhatsApp Action: Official SVG Icon Only */}
-            <a
-              href={buildWhatsAppLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/30 border border-[#25D366]/40 transition-all flex items-center justify-center shrink-0"
-              aria-label="WhatsApp"
-            >
-              <WhatsAppIconSVG className="w-3.5 h-3.5 fill-current" />
-            </a>
-
-            {/* Book Action: Compact 'Book' */}
-            <button
-              onClick={() => openAppointment()}
-              className="h-8 px-2.5 bg-gradient-to-r from-hospital-500 to-hospital-600 active:bg-hospital-700 text-white font-bold text-xs rounded-lg shadow-md flex items-center gap-1 shrink-0 whitespace-nowrap"
-            >
-              <Calendar className="w-3.5 h-3.5 text-sky-200" />
-              <span>Book</span>
-            </button>
-
-            {/* Mobile Menu Button */}
+          {/* Mobile Menu Hamburger Button */}
+          <div className="flex items-center lg:hidden shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-8 h-8 rounded-lg bg-white/10 text-white hover:bg-white/15 transition-colors flex items-center justify-center shrink-0"
+              className="w-9 h-9 rounded-xl bg-white/10 text-white hover:bg-white/15 active:bg-white/20 transition-colors flex items-center justify-center shrink-0"
               aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
             >
               {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
+        </div>
+
+        {/* Mobile Sticky Quick-Action Layer (Directly Below Main Nav) */}
+        <div className="lg:hidden w-full bg-slate-950/98 backdrop-blur-md border-t border-white/5 px-3 py-1.5 flex items-center gap-2 shadow-sm">
+          {/* Call Button (Thoda Chota) */}
+          <a
+            href={`tel:${CLINIC_INFO.phone}`}
+            className="px-2.5 py-1.5 rounded-lg bg-white/10 text-white hover:bg-white/20 active:bg-white/30 border border-white/15 transition-all flex items-center justify-center gap-1 shrink-0 text-[11px] font-semibold"
+            aria-label="Call Clinic"
+          >
+            <Phone className="w-3 h-3 text-sky-400" />
+            <span>Call</span>
+          </a>
+
+          {/* WhatsApp Button (Thoda Chota) */}
+          <a
+            href={buildWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 rounded-lg bg-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/30 border border-[#25D366]/40 transition-all flex items-center justify-center gap-1 shrink-0 text-[11px] font-semibold"
+            aria-label="WhatsApp Clinic"
+          >
+            <WhatsAppIconSVG className="w-3.5 h-3.5 fill-current" />
+            <span>WhatsApp</span>
+          </a>
+
+          {/* Book Appointment Button (Thoda Bada) */}
+          <button
+            onClick={() => openAppointment()}
+            className="flex-1 py-1.5 px-3 rounded-lg bg-gradient-to-r from-hospital-500 to-hospital-600 active:bg-hospital-700 text-white font-bold text-xs shadow-md shadow-hospital-600/30 flex items-center justify-center gap-1.5 truncate"
+          >
+            <Calendar className="w-3.5 h-3.5 text-sky-200 shrink-0" />
+            <span className="truncate">Book Appointment</span>
+          </button>
         </div>
 
         {/* Mobile Dropdown Menu */}
