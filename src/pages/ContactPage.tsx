@@ -214,25 +214,30 @@ Please confirm availability. Thank you!`;
             ========================================================================= */}
         <section className="w-full px-3 sm:px-6 lg:px-10 -mt-5 sm:-mt-8 md:-mt-10 relative z-20">
           
-          {/* Mobile View: 4 Compact Cards in 1 Row (Exact Mobile reference) */}
-          <div className="grid grid-cols-4 gap-1.5 sm:gap-2.5 md:hidden">
+          {/* Mobile View: 2x2 Clean Grid (No wrapping, clear phone & email) */}
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 md:hidden">
             
             {/* Card 1: Call Reception */}
             <a 
               href={buildCallLink()} 
-              className="p-2 sm:p-2.5 rounded-xl bg-white border border-[#DCE7F5] shadow-xs hover:border-[#0866E9] transition-all flex flex-col justify-between text-left"
+              className="p-3 sm:p-3.5 rounded-2xl bg-white border border-[#DCE7F5] shadow-xs hover:border-[#0866E9] hover:shadow-md transition-all flex flex-col justify-between text-left group"
             >
-              <div className="w-7 h-7 rounded-lg bg-[#0866E9]/10 text-[#0866E9] flex items-center justify-center shrink-0 mb-1.5">
-                <Phone className="w-3.5 h-3.5" />
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-[#0866E9]/10 text-[#0866E9] flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-bold text-[#0866E9] bg-[#0866E9]/10 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                  Call <ChevronRight className="w-2.5 h-2.5" />
+                </span>
               </div>
               <div>
-                <span className="text-[9px] font-semibold text-slate-500 flex items-center justify-between leading-none">
-                  <span>Call Reception</span>
-                  <ChevronRight className="w-2.5 h-2.5 text-slate-400" />
+                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide block">
+                  Call Reception
                 </span>
-                <span className="text-[10px] font-bold text-[#071B35] font-mono leading-tight block mt-1">
+                <span className="text-xs sm:text-sm font-bold text-[#071B35] font-mono leading-tight block mt-0.5">
                   +91 92814 10305
                 </span>
+                <span className="text-[9.5px] text-slate-400 block mt-0.5">Direct booking desk</span>
               </div>
             </a>
 
@@ -241,55 +246,69 @@ Please confirm availability. Thank you!`;
               href={buildWhatsAppLink("Hello Siya's Physiotherapy & Rehabilitation Centre, I would like to inquire about appointments and consultation.")} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="p-2 sm:p-2.5 rounded-xl bg-white border border-[#DCE7F5] shadow-xs hover:border-emerald-500 transition-all flex flex-col justify-between text-left"
+              className="p-3 sm:p-3.5 rounded-2xl bg-white border border-[#DCE7F5] shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between text-left group"
             >
-              <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mb-1.5">
-                <WhatsAppIconSVG className="w-3.5 h-3.5 fill-current" />
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                  <WhatsAppIconSVG className="w-4 h-4 fill-current" />
+                </div>
+                <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                  Chat <ChevronRight className="w-2.5 h-2.5" />
+                </span>
               </div>
               <div>
-                <span className="text-[9px] font-semibold text-slate-500 flex items-center justify-between leading-none">
-                  <span>WhatsApp</span>
-                  <ChevronRight className="w-2.5 h-2.5 text-slate-400" />
+                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide block">
+                  WhatsApp Desk
                 </span>
-                <span className="text-[10px] font-bold text-[#071B35] font-mono leading-tight block mt-1">
+                <span className="text-xs sm:text-sm font-bold text-[#071B35] font-mono leading-tight block mt-0.5">
                   +91 92814 10305
                 </span>
+                <span className="text-[9.5px] text-slate-400 block mt-0.5">Instant chat & slots</span>
               </div>
             </a>
 
             {/* Card 3: Email Us */}
             <a 
               href={`mailto:${CLINIC_INFO.email}`} 
-              className="p-2 sm:p-2.5 rounded-xl bg-white border border-[#DCE7F5] shadow-xs hover:border-[#0798F2] transition-all flex flex-col justify-between text-left"
+              className="p-3 sm:p-3.5 rounded-2xl bg-white border border-[#DCE7F5] shadow-xs hover:border-[#0798F2] hover:shadow-md transition-all flex flex-col justify-between text-left group"
             >
-              <div className="w-7 h-7 rounded-lg bg-sky-50 text-[#0798F2] flex items-center justify-center shrink-0 mb-1.5">
-                <Mail className="w-3.5 h-3.5" />
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-sky-50 text-[#0798F2] flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-bold text-[#0798F2] bg-sky-50 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                  Email <ChevronRight className="w-2.5 h-2.5" />
+                </span>
               </div>
               <div>
-                <span className="text-[9px] font-semibold text-slate-500 flex items-center justify-between leading-none">
-                  <span>Email Us</span>
-                  <ChevronRight className="w-2.5 h-2.5 text-slate-400" />
+                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide block">
+                  Official Email
                 </span>
-                <span className="text-[9.5px] font-bold text-[#071B35] leading-tight block mt-1 truncate">
+                <span className="text-xs sm:text-[13px] font-bold text-[#071B35] leading-tight block mt-0.5 break-all">
                   {CLINIC_INFO.email}
                 </span>
+                <span className="text-[9.5px] text-slate-400 block mt-0.5">Queries & reports</span>
               </div>
             </a>
 
             {/* Card 4: Centre Hours */}
-            <div className="p-2 sm:p-2.5 rounded-xl bg-white border border-[#DCE7F5] shadow-xs flex flex-col justify-between text-left">
-              <div className="w-7 h-7 rounded-lg bg-[#071B35] text-[#0798F2] flex items-center justify-center shrink-0 mb-1.5">
-                <Clock className="w-3.5 h-3.5" />
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-white border border-[#DCE7F5] shadow-xs flex flex-col justify-between text-left">
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-[#071B35] text-[#0798F2] flex items-center justify-center shrink-0">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                  Timings
+                </span>
               </div>
               <div>
-                <span className="text-[9px] font-semibold text-slate-500 flex items-center justify-between leading-none">
-                  <span>Centre Hours</span>
-                  <ChevronRight className="w-2.5 h-2.5 text-slate-400" />
+                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide block">
+                  Centre Hours
                 </span>
-                <span className="text-[9.5px] font-bold text-[#071B35] leading-tight block mt-1">
-                  Mon – Sat<br />
-                  <span className="text-[9px] text-slate-600 font-medium">8:30 AM - 8:30 PM</span>
+                <span className="text-xs sm:text-[13px] font-bold text-[#071B35] leading-tight block mt-0.5">
+                  Mon – Sat: 8:30 AM – 8:30 PM
                 </span>
+                <span className="text-[9.5px] text-slate-400 block mt-0.5">Sunday by appointment</span>
               </div>
             </div>
 
@@ -574,9 +593,9 @@ Please confirm availability. Thank you!`;
                         className="w-full pl-7 sm:pl-9 pr-7 sm:pr-8 py-1.5 sm:py-2 rounded-xl border border-[#DCE7F5] bg-white text-xs sm:text-sm text-[#24364B] focus:ring-2 focus:ring-[#0866E9] focus:border-[#0866E9] focus:outline-none transition-all appearance-none cursor-pointer"
                         required
                       >
-                        <option value="general">Initial Comprehensive Assessment</option>
+                        <option value="general">Initial Physiotherapy Assessment</option>
                         {TREATMENTS.map(t => (
-                          <option key={t.id} value={t.id}>{t.name}</option>
+                          <option key={t.id} value={t.id}>{t.shortName || t.name}</option>
                         ))}
                         <option value="spine-pack">Spine Recovery Package (10 Sessions)</option>
                         <option value="knee-pack">Knee Joint Package (12 Sessions)</option>

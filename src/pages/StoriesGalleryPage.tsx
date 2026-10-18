@@ -163,15 +163,15 @@ export const StoriesGalleryPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-6 pt-0 border-t border-slate-100 mt-2 flex items-center justify-between">
-                <span className="text-xs text-slate-500">Supervised by Dr. Alistair Wright</span>
+              <div className="px-5 py-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="text-[11px] text-slate-500 font-medium truncate">Led by {LEAD_DOCTOR.name}</span>
                 <button
                   type="button"
                   onClick={() => openAppointment()}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:text-primary-hover shrink-0"
                 >
-                  <span>Book Similar Care</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Book Care</span>
+                  <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
@@ -238,20 +238,20 @@ export const StoriesGalleryPage: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
             Don't let back pain, knee arthritis, or neck stiffness dictate your life. Book a dedicated evaluation with Dr. Alistair Wright today.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row items-center justify-center pt-2 max-w-md mx-auto">
             <button
               onClick={() => openAppointment()}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-hover shadow-lg shadow-sky-600/30"
+              className="w-full py-2.5 px-3 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-hover shadow-md text-center"
             >
-              Book Clinical Assessment
+              Book Care
             </button>
             <a
               href={buildWhatsAppLink("Hello Siya's Physiotherapy & Rehabilitation Centre, I saw your patient recovery stories and would like to start my rehabilitation.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-whatsapp text-white font-bold text-sm hover:bg-whatsapp-hover shadow-sm"
+              className="w-full py-2.5 px-3 rounded-xl bg-whatsapp text-white font-bold text-xs sm:text-sm hover:bg-whatsapp-hover shadow-sm text-center flex items-center justify-center gap-1"
             >
-              Chat on WhatsApp
+              <span>WhatsApp</span>
             </a>
           </div>
         </div>

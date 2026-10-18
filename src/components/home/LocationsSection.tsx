@@ -71,24 +71,24 @@ export const LocationsSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-2.5 shrink-0 justify-center">
+              {/* Action Buttons - 2 on 1 Line on Mobile */}
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-col sm:gap-2.5 shrink-0 justify-center">
                 <button
                   onClick={() => openAppointment()}
-                  className="py-2.5 px-5 bg-gradient-to-r from-hospital-500 to-hospital-600 hover:from-hospital-600 hover:to-hospital-700 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                  className="py-2.5 px-3 bg-gradient-to-r from-hospital-500 to-hospital-600 hover:from-hospital-600 hover:to-hospital-700 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-1.5"
                 >
-                  <Calendar className="w-4 h-4" />
-                  <span>Book Consultation</span>
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Book Visit</span>
                 </button>
 
                 <a
                   href={`https://maps.google.com/?q=${encodeURIComponent(CLINIC_INFO.name + ' ' + CLINIC_INFO.branch.fullAddress)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-5 bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm shadow-2xs transition-all flex items-center justify-center gap-2"
+                  className="py-2.5 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm shadow-2xs transition-all flex items-center justify-center gap-1.5"
                 >
-                  <Navigation className="w-4 h-4 text-hospital-600" />
-                  <span>Get Directions</span>
+                  <Navigation className="w-3.5 h-3.5 text-hospital-600" />
+                  <span>Directions</span>
                 </a>
               </div>
             </div>

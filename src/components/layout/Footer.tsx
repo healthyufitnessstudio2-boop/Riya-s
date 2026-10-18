@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAppointmentModal, onOpenEm
   const { openAppointment, openEmergency, openTreatmentDetail } = useModal();
 
   return (
-    <footer className="bg-hospital-navy text-slate-300 pt-16 pb-12 border-t border-slate-800 select-none w-full">
+    <footer className="bg-hospital-navy text-slate-300 pt-16 pb-32 sm:pb-16 lg:pb-14 border-t border-slate-800 select-none w-full pb-[calc(7rem+env(safe-area-inset-bottom,0px))]">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800 text-left">

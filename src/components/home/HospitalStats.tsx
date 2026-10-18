@@ -20,25 +20,23 @@ export const HospitalStats: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-0 ${
+                className={`flex items-start sm:items-center gap-2 sm:gap-3 p-2 sm:p-0 ${
                   idx > 0 ? "sm:pl-4 md:pl-6" : ""
                 }`}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-hospital-50 text-hospital-600 flex items-center justify-center shrink-0 shadow-inner">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-hospital-50 text-hospital-600 flex items-center justify-center shrink-0 shadow-inner mt-0.5 sm:mt-0">
                   <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <div className="text-left">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-base sm:text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
-                      {stat.value}
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-bold text-hospital-700 truncate">
-                      {stat.label}
-                    </span>
+                <div className="text-left min-w-0 flex-1 space-y-0.5">
+                  <div className="text-base sm:text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight leading-none">
+                    {stat.value}
                   </div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-400 block leading-none truncate">
+                  <div className="text-[10.5px] sm:text-xs font-bold text-hospital-700 leading-tight truncate">
+                    {stat.label}
+                  </div>
+                  <div className="text-[9px] sm:text-[10px] text-slate-400 leading-tight truncate">
                     {stat.subtext}
-                  </span>
+                  </div>
                 </div>
               </motion.div>
             );

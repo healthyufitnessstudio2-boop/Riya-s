@@ -189,18 +189,19 @@ export const TreatmentsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row items-center shrink-0 w-full md:w-auto">
             <button
               onClick={() => openAppointment()}
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-hover shadow-lg shadow-sky-600/30"
+              className="w-full py-2.5 px-3 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-hover shadow-md text-center"
             >
-              Book Clinical Assessment
+              Book Visit
             </button>
             <a
               href={buildCallLink()}
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors border border-white/10"
+              className="w-full py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm transition-colors border border-white/10 text-center flex items-center justify-center gap-1"
             >
-              Call: {CLINIC_INFO.phoneDisplay}
+              <Phone className="w-3.5 h-3.5 text-sky-400" />
+              <span>Call Us</span>
             </a>
           </div>
         </div>

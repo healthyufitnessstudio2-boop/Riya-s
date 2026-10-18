@@ -161,23 +161,23 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-3">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row items-center pt-3 w-full">
                 <button
                   type="button"
                   onClick={() => openAppointment()}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-hover shadow-md shadow-sky-600/25"
+                  className="w-full py-2.5 px-3 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-hover shadow-md shadow-sky-600/25 flex items-center justify-center gap-1.5"
                 >
-                  <Calendar className="w-4 h-4" />
-                  <span>Book 1-on-1 Session</span>
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Book Visit</span>
                 </button>
                 <a
                   href={buildWhatsAppLink("Hello Siya's Physiotherapy & Rehabilitation Centre, I would like to book a consultation appointment.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-whatsapp text-white font-bold text-sm hover:bg-whatsapp-hover shadow-sm"
+                  className="w-full py-2.5 px-3 rounded-xl bg-whatsapp text-white font-bold text-xs sm:text-sm hover:bg-whatsapp-hover shadow-sm flex items-center justify-center gap-1.5"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>WhatsApp Directly</span>
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>WhatsApp</span>
                 </a>
               </div>
             </div>

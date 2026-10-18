@@ -175,27 +175,25 @@ export const DoctorsSection: React.FC = () => {
         </div>
 
         {/* Bottom Floating Stats Bar (Matching CityCare) */}
-        <div className="mt-10 max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 divide-y-0 sm:divide-x divide-white/10">
+        <div className="mt-8 max-w-5xl mx-auto bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 divide-y-0 sm:divide-x divide-white/10">
             {statsData.map((stat, idx) => {
               const Icon = stat.icon;
               return (
-                <div key={idx} className={`flex items-center gap-3 p-2 sm:p-0 ${idx > 0 ? "lg:pl-6" : ""}`}>
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0 border border-sky-400/30">
+                <div key={idx} className={`flex items-start sm:items-center gap-2 sm:gap-3 p-1.5 sm:p-0 ${idx > 0 ? "lg:pl-6" : ""}`}>
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0 border border-sky-400/30 mt-0.5 sm:mt-0">
                     <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div className="text-left">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-lg sm:text-2xl font-extrabold text-white tracking-tight">
-                        {stat.value}
-                      </span>
+                  <div className="text-left min-w-0 flex-1 space-y-0.5">
+                    <div className="text-base sm:text-xl md:text-2xl font-extrabold text-white tracking-tight leading-none">
+                      {stat.value}
                     </div>
-                    <span className="text-xs font-bold text-sky-300 block truncate">
+                    <div className="text-[10.5px] sm:text-xs font-bold text-sky-300 leading-tight truncate">
                       {stat.title}
-                    </span>
-                    <span className="text-[10px] text-slate-400 block truncate">
+                    </div>
+                    <div className="text-[9px] sm:text-[10px] text-slate-400 leading-tight truncate">
                       {stat.subtitle}
-                    </span>
+                    </div>
                   </div>
                 </div>
               );

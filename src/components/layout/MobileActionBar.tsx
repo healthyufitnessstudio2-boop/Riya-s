@@ -17,7 +17,7 @@ export const MobileActionBar: React.FC = () => {
       aria-label="Floating mobile page navigation"
       className="lg:hidden fixed bottom-3 left-3 right-3 z-40 bg-slate-950/95 backdrop-blur-xl border border-white/15 rounded-2xl py-1.5 px-2 shadow-2xl shadow-black/60 select-none pb-[calc(0.375rem+env(safe-area-inset-bottom,0px))]"
     >
-      <div className="grid grid-cols-5 gap-1 items-center text-center">
+      <div className="flex items-center justify-around gap-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -25,17 +25,23 @@ export const MobileActionBar: React.FC = () => {
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all ${
+                `flex items-center justify-center transition-all duration-200 rounded-xl ${
                   isActive
-                    ? 'text-sky-400 font-bold bg-white/10 shadow-inner'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 font-medium'
+                    ? 'bg-[#0866E9] text-white font-bold px-3 py-1.5 shadow-md shadow-[#0866E9]/40 gap-1.5 shrink-0'
+                    : 'text-slate-400 hover:text-white p-2 hover:bg-white/5'
                 }`
               }
             >
-              <Icon className="w-4 h-4 mb-0.5" />
-              <span className="text-[10px] leading-tight tracking-tight truncate w-full">
-                {item.label}
-              </span>
+              {({ isActive }) => (
+                <>
+                  <Icon className={isActive ? "w-4 h-4 shrink-0" : "w-5 h-5 shrink-0"} />
+                  {isActive && (
+                    <span className="text-[11px] font-bold tracking-tight whitespace-nowrap">
+                      {item.label}
+                    </span>
+                  )}
+                </>
+              )}
             </NavLink>
           );
         })}
