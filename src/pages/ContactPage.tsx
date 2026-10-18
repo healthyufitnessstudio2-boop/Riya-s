@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { 
   CLINIC_INFO, 
+  LEAD_DOCTOR,
   TREATMENTS,
   buildCallLink, 
   buildWhatsAppLink 
@@ -78,7 +79,7 @@ Please confirm availability. Thank you!`;
     <>
       <SEOHead 
         title="Contact & Book Appointment | Siya’s Physiotherapy & Rehabilitation Centre"
-        description="Connect with Siya’s Physiotherapy. Schedule 1-on-1 consultations with Dr. Siya Khan. Located opposite Civil Hospital, Station Road, Hubballi."
+        description={`Connect with ${CLINIC_INFO.name}. Schedule 1-on-1 consultations with ${LEAD_DOCTOR.name}. Located opposite Civil Hospital, Station Road, Hubballi.`}
       />
 
       <div className="bg-[#F4F8FD] min-h-screen text-[#24364B] pb-24 sm:pb-20 select-none">
@@ -442,7 +443,7 @@ Please confirm availability. Thank you!`;
                 <div>
                   <h2 className="text-lg sm:text-2xl font-extrabold text-[#071B35] tracking-tight">
                     <span className="md:hidden">Book an Appointment</span>
-                    <span className="hidden md:inline">Book with Dr. Siya Khan</span>
+                    <span className="hidden md:inline">Book with {LEAD_DOCTOR.name}</span>
                   </h2>
                   <p className="text-[11px] sm:text-xs text-slate-500 leading-snug">
                     Fill in your details and our clinical care coordinator will contact you to confirm your slot.

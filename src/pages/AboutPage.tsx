@@ -80,7 +80,7 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          DOCTOR SPOTLIGHT (EXACTLY 1 DOCTOR: DR. SIYA KHAN)
+          DOCTOR SPOTLIGHT (EXACTLY 1 DOCTOR: DR. ALISTAIR WRIGHT)
           ========================================================================= */}
       <section className="w-full px-4 sm:px-6 lg:px-10 -mt-12 sm:-mt-16 relative z-20">
         <div className="rounded-3xl bg-white border border-slate-200/90 shadow-2xl p-6 sm:p-10 lg:p-12">

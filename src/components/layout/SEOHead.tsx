@@ -12,7 +12,7 @@ const pageSEOMap: Record<string, { title: string; description: string }> = {
     description: "Expert Physiotherapy & Rehabilitation for a pain-free life. Specializing in Back Pain, Neck Pain, and Knee Joint Rehabilitation.",
   },
   '/about': {
-    title: "About the Centre & Dr. Siya | Siya’s Physiotherapy & Rehabilitation",
+    title: "About Specialist & Centre | Siya’s Physiotherapy & Rehabilitation",
     description: "Learn about our patient-first recovery philosophy, clinical qualifications, experience, and modern physiotherapy care.",
   },
   '/treatments': {

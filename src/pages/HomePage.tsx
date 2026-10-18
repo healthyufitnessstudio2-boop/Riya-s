@@ -29,7 +29,7 @@ export const HomePage: React.FC = () => {
         {/* Continuous Horizontal Auto-scrolling Departments */}
         <DepartmentsSection />
 
-        {/* Consultant Specialist: Dr. Siya Khan 3D glowing card + stats */}
+        {/* Consultant Specialist: Dr. Alistair Wright 3D glowing card + stats */}
         <DoctorsSection />
 
         {/* Advanced Clinical Facilities Grid */}
